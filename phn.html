@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone Number Validation</title>
+  <style>
+    .error{
+      color: red;
+    }
+    .valid{
+      color: green;
+    }
+  </style>
+   
+</head>
+<body>
+
+  <form id="phoneNumberForm">
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" oninput="validatePhoneNumber(this.value)" maxlength="10">
+    <p id="error" class="error"></p>
+    <span id="tick" class="valid"></span>
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
+
+  <script>
+    function validatePhoneNumber(input) {
+  var phoneNumberInput = input.replace(/\D/g, ''); // Remove non-digit characters
+  document.getElementById('phoneNumber').value = phoneNumberInput;
+
+  var errorElement = document.getElementById('error');
+  var tickElement = document.getElementById('tick');
+  if (/[^0-9]/.test(input)) {
+    errorElement.textContent = 'Error: Only digits are allowed in the phone number.';
+  } else if (input.length < 10) {
+    errorElement.textContent = 'Error: Phone number must contain 10 digits.';
+  }  else if (input.length=10){ 
+    errorElement.textContent='valid';
+    errorElement.className='valid';
+    tickElement.style.display='inline';
+}
+}
+
+function submitForm() {
+  alert("Submitting successfully!");
+  document.getElementById('phoneNumberForm').reset();
+}
+  </script>
+
+</body>
+</html>
+
+
+ 
